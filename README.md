@@ -78,3 +78,26 @@ python3 manage.py createsuperuser
 - Create a `.gitignore` file for the project
 - Push to the `main` branch of github repo
 
+
+
+# Add `requirements.txt` file
+From the project root `LearnDRP/` directory, where the `env` virtual environment resides, we'll create a `requirements.txt` file.
+
+### Why `requirements.txt`?
+- **Simplifies Dependency Installation:** Instead of manually installing each library, a single command `(pip install -r requirements.txt)` installs all the necessary dependencies for the project.
+- **Ensures Environment Consistency:** By specifying exact versions of libraries, requirements.txt ensures that everyone working on the project uses the same versions of dependencies. This avoids compatibility issues, such as a library update breaking the project.
+- **Eases Collaboration**
+When sharing the project with others (e.g., teammates or open-source contributors), the requirements.txt file tells them exactly which libraries are needed and which versions to install.
+- **Facilitates Deployment:** During deployment, the production server can use the requirements.txt file to quickly install all dependencies. Many cloud platforms and containerization tools (e.g., Docker) rely on this file for setting up the application environment.
+- **Automates CI/CD Pipelines:** Continuous Integration/Continuous Deployment (CI/CD) pipelines use requirements.txt to set up the application environment in automated workflows.
+
+### Where to Create requirements.txt?
+We should create the `requirements.txt` file in the `project_root/` directory, alongside `.git/` and `env/.` This makes the file accessible for :
+- Git tracking: It’s version-controlled with our repository.
+- Deployment: Tools like Docker or CI/CD pipelines often expect `requirements.txt` in the root directory.
+- Team collaboration: Developers working on the same project can install dependencies easily.
+
+### How to create?
+```bash
+pip freeze > requirements.txt
+```
