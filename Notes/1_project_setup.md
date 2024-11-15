@@ -1,3 +1,4 @@
+# Project setup
 
 ## Create a project directory repo and enter into it
 ```bash

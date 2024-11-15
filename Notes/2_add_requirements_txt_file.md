@@ -1,3 +1,5 @@
+# Add `requirements.txt` file to the project
+
 From the project root `LearnDRP/` directory, where the `env` virtual environment resides, we'll create a `requirements.txt` file.
 
 ## Why `requirements.txt`?
