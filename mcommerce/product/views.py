@@ -9,7 +9,7 @@ from rest_framework.response import Response
 # list all the products
 def list_products(request):
     products = Product.objects.all()
-    serialized_products = ProductSerializer(products)
+    serialized_products = ProductSerializer(products, many=True)
     context = {
         'products': serialized_products.data
     }
