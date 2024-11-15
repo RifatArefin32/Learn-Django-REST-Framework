@@ -1,0 +1,56 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# If you are using PostgreSQL, ignore this file
+*.pgdata
+
+# Environment variables:
+.env
+
+# Media files
+/media/
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+# Static files:
+staticfiles/
+static/
+
+# Virtual environment:
+env/
+
+# VS Code settings:
+.vscode/
+
+# PyCharm settings:
+.idea/
+
+# MacOS files:
+.DS_Store
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports:
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+
+# Migrations:
+**/migrations/*
+
+# Local .gitignore overrides
+!.gitignore
+
+# Celery beat schedule
+celerybeat-schedule
