@@ -6,3 +6,7 @@ class Product(models.Model):
     cost = models.DecimalField(decimal_places=2, max_digits=6)
     expire_date = models.DateField(null=True, blank=True)
     description = models.TextField()
+    
+    def __str__(self):
+        return self.name
+    
