@@ -2,15 +2,14 @@ from django.urls import path, include
 from .views import list_products, list_messages
 from .views import ClassProducts, ClassProductDetails
 from .views import GenericProducts, GenericProductDetails, GenericSpecialProductDetails
-from .views import ProductViewsets
+from .views import ProductViewsets, ReadOnlyProductViewsets
 from rest_framework.routers import DefaultRouter
 
 
 
 router = DefaultRouter()
-router.register(
-    'productviewset', ProductViewsets, basename='product'
-)
+router.register('product-viewset', ProductViewsets, basename='product')
+router.register('readonly-product-viewset', ReadOnlyProductViewsets, basename='readonly-product')
 
 
 urlpatterns = [
