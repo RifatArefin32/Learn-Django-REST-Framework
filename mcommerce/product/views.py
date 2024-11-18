@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from rest_framework import generics, viewsets
 
 # function based views
@@ -53,6 +54,10 @@ def list_messages(request):
     
 # class based views 
 class ClassProducts(APIView):
+    # specific view level authentication
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+    
     # show all products
     def get(self, request):
         products = Product.objects.all()
