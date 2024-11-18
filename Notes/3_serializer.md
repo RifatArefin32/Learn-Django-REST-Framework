@@ -9,7 +9,7 @@ Similarly, serializers also validate and convert incoming data (e.g., JSON) into
 
 # Types of Serializers in DRF
 
-## serializers.Serializer
+### serializers.Serializer
 - A manually defined serializer where we specify every field and write the logic for serialization and deserialization.
 - Provides fine-grained control over how the data is processed.
 - Example
@@ -22,7 +22,7 @@ class UserSerializer(serializers.Serializer):
     email = serializers.EmailField()
 ```
 
-## serializers.ModelSerializer
+### serializers.ModelSerializer
 - Automatically maps Django models to serializer fields, greatly simplifying the code.
 - Suitable for most cases when working with Django models.
 - Example
