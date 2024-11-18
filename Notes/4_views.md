@@ -22,3 +22,4 @@
     - RetrieveUpdateDestroyAPIView
 
 ## ViewSets
+- A ViewSet combines the behavior of several generic views (e.g., ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView) into a single class and automatically provides methods for CRUD (Create, Read, Update, Delete) operations.
