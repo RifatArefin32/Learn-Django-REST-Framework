@@ -5,7 +5,11 @@ from datetime import datetime
 
 # product category model
 class ProductCategory(models.Model):
-    cat_name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
+    
+    def __str__(self):
+        return self.name
+    
 
 
 # product model
