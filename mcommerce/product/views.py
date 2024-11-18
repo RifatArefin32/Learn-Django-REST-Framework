@@ -136,3 +136,7 @@ class GenericSpecialProductDetails(generics.RetrieveUpdateDestroyAPIView):
 class ProductViewsets(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
+class ReadOnlyProductViewsets(viewsets.ReadOnlyModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
