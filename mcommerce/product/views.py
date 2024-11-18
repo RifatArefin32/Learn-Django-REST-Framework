@@ -52,7 +52,6 @@ def list_messages(request):
 # class based views 
 # Views for listing all products
 class ClassProducts(APIView):
-    # get all products
     def get(self, request):
         products = Product.objects.all()
         serializer_class = ProductSerializer(products, many=True)
