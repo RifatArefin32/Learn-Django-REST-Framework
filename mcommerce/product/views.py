@@ -15,10 +15,10 @@ from rest_framework.views import APIView
 def list_products(request):
     products = Product.objects.all()
     serializer_class = ProductSerializer(products, many=True)
-    context = {
+    response_data = {
         'products': serializer_class.data
     }
-    return Response(context)
+    return Response(response_data)
 
 
 
@@ -64,10 +64,10 @@ class ClassProducts(APIView):
         serialized_data = ProductSerializer(data=request.data)
         if serialized_data.is_valid(raise_exception=True):
             product_saved = serialized_data.save()
-            context = {
+            response_data = {
                 "message": "Product {} is created successfully".format(product_saved.name),
             }
-            return Response(context, status=status.HTTP_201_CREATED)
+            return Response(response_data, status=status.HTTP_201_CREATED)
         return Response(serialized_data.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -79,14 +79,35 @@ class ClassProductDetails(APIView):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
     
+    
     # update a product
     def put(self, request, id):
         product = Product.objects.get(id=id)
         serialized_data = ProductSerializer(product, data=request.data)
         if serialized_data.is_valid(raise_exception=True):
             product_saved = serialized_data.save()
-            context = {
+            response_data = {
                 "message": "Product {} is updated successfully".format(product_saved.name),
             }
-            return Response(context, status=status.HTTP_201_CREATED)
+            return Response(response_data, status=status.HTTP_201_CREATED)
         return Response(serialized_data.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+    # delete a specific product
+    def delete(self, request, id):
+        try:
+            product = Product.objects.get(id=id)
+            product_data = ProductSerializer(product).data
+            product.delete()
+            response_data = {
+                'message': 'Product deleted successfully.',
+                'deleted_product': product_data
+            }
+            return Response(response_data, status=status.HTTP_200_OK)
+        
+        except Product.DoesNotExist:
+            response_data = {
+                'error': 'Product not found.'
+            }
+            return Response(response_data, status=status.HTTP_404_NOT_FOUND)
+        
