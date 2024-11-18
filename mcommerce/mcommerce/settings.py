@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # bult-in apps for DRF
     'rest_framework',
-    'product',
     'rest_framework.authtoken',
+    
+    # project app
+    'product',
 ]
 
 MIDDLEWARE = [
