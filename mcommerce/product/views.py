@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
 # function based views
 # list all the products (function based view)
@@ -127,5 +127,12 @@ class GenericProductDetails(generics.RetrieveAPIView,
     
 # special generic view to RUD a product
 class GenericSpecialProductDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    
+
+
+# Viewsets
+class ProductViewsets(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
