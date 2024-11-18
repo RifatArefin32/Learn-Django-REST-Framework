@@ -52,13 +52,14 @@ def list_messages(request):
     
     
 # class based views 
-# Views for listing all products
 class ClassProducts(APIView):
+    # show all products
     def get(self, request):
         products = Product.objects.all()
         serializer_class = ProductSerializer(products, many=True)
         return Response(serializer_class.data)
     
+    # create a new product
     def post(self, request):
         serialized_data = ProductSerializer(data=request.data)
         if serialized_data.is_valid(raise_exception=True):
@@ -72,8 +73,20 @@ class ClassProducts(APIView):
 
 # Views for product details
 class ClassProductDetails(APIView):
+    # show details of a product
     def get(self, request, id):
         products = Product.objects.filter(id=id)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
     
+    # update a product
+    def put(self, request, id):
+        product = Product.objects.get(id=id)
+        serialized_data = ProductSerializer(product, data=request.data)
+        if serialized_data.is_valid(raise_exception=True):
+            product_saved = serialized_data.save()
+            context = {
+                "message": "Product {} is updated successfully".format(product_saved.name),
+            }
+            return Response(context, status=status.HTTP_201_CREATED)
+        return Response(serialized_data.errors, status=status.HTTP_400_BAD_REQUEST)
