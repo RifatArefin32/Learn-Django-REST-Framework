@@ -124,3 +124,8 @@ class GenericProductDetails(generics.RetrieveAPIView,
                             generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
+# special generic view to RUD a product
+class GenericSpecialProductDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
