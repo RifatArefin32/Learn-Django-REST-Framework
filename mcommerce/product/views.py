@@ -39,4 +39,9 @@ def list_messages(request):
             )
             message.save()  # Save the message
             return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+        
+        error_response = {
+            'status': False,
+            'errors': serializer.errors
+        }
+        return Response(error_response, status=400)
