@@ -12,8 +12,19 @@ class Product(models.Model):
         return self.name
 
 
-class Message():
+class Message:
+    messages = []  # Static list to store all messages
+
     def __init__(self, email, content, created=None):
         self.email = email
         self.content = content
         self.created_at = created or datetime.now()
+    
+    def save(self):
+        # Simulate saving the object (add it to the messages list)
+        Message.messages.append(self)
+
+    @classmethod
+    def all(cls):
+        # Return all stored messages
+        return cls.messages
