@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 # Create your views here.
 
 # list all the products
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def list_products(request):
     products = Product.objects.all()
     serialized_products = ProductSerializer(products, many=True)
