@@ -25,6 +25,7 @@ class UserSerializer(serializers.Serializer):
 ### serializers.ModelSerializer
 - Automatically maps Django models to serializer fields, greatly simplifying the code.
 - Suitable for most cases when working with Django models.
+- In case of model serializer, `model` and `fields` are pre-defined keywords to describe the model
 - Example
 ```python
 from rest_framework import serializers
