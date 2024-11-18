@@ -4,9 +4,9 @@ from .serializers import ProductSerializer, MessageSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
-# Create your views here.
-
+# function based views
 # list all the products (function based view)
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -17,6 +17,7 @@ def list_products(request):
         'products': serializer_class.data
     }
     return Response(context)
+
 
 
 # list all message and create a message
@@ -45,3 +46,16 @@ def list_messages(request):
             'errors': serializer.errors
         }
         return Response(error_response, status=400)
+    
+    
+    
+# class based views 
+# Views for listing all products
+class ClassProducts(APIView):
+    
+    # get all products
+    def get(self, request):
+        products = Product.objects.all()
+        serializer_class = ProductSerializer(products, many=True)
+        
+        return Response(serializer_class.data)

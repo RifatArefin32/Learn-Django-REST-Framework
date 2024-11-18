@@ -14,7 +14,7 @@ class ProductCategory(models.Model):
 
 # product model
 class Product(models.Model):
-    category = models.ForeignKey('ProductCategory', related_name='products', on_delete=models.CASCADE)
+    category_id = models.ForeignKey('ProductCategory', related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     cost = models.DecimalField(decimal_places=2, max_digits=6)
     expire_date = models.DateField(null=True, blank=True)
