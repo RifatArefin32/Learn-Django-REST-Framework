@@ -3,7 +3,7 @@ from .models import Product, Message
 from .serializers import ProductSerializer, MessageSerializer
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
@@ -12,6 +12,7 @@ from rest_framework import generics, viewsets
 # function based views
 # list all the products (function based view)
 @api_view(['GET', 'POST'])
+@authentication_classes([BasicAuthentication, SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def list_products(request):
     products = Product.objects.all()
