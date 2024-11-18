@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # bult-in apps for DRF
     'rest_framework',
+    'rest_framework.authtoken',
+    
+    # project app
     'product',
 ]
 
@@ -138,5 +143,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Add global pagination
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5
+    'PAGE_SIZE': 5,
+    
+    # Add global authentication class to the entire site
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication', # for global token authentication
+    ],   
+    
+    # Add permission to the entire site
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ] 
 }
