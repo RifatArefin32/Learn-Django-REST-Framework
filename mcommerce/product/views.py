@@ -112,8 +112,15 @@ class ClassProductDetails(APIView):
             return Response(response_data, status=status.HTTP_404_NOT_FOUND)
         
         
-# Generics class
+# Generics class views
+# list all products
 class GenericProducts(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     
+# CRUD product
+class GenericProductDetails(generics.RetrieveAPIView,
+                            generics.UpdateAPIView,
+                            generics.DestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

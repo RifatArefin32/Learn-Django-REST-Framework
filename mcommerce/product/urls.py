@@ -1,7 +1,7 @@
 from django.urls import path, include
 from .views import list_products, list_messages
 from .views import ClassProducts, ClassProductDetails
-from .views import GenericProducts
+from .views import GenericProducts, GenericProductDetails
 
 urlpatterns = [
     path('product-list/', list_products, name='ListProduct'), # DRF authentication
@@ -12,6 +12,6 @@ urlpatterns = [
     path('class-product-detail/<int:id>/', ClassProductDetails.as_view(), name='class_product_details'),
     
     # generic view
-    path('generic-product-list/', GenericProducts.as_view(), name='generics_products'),
-    path('generic-product-detail/<int:id>/', GenericProductDetails.as_view(), name='class_product_details'),
+    path('generic-product-list/', GenericProducts.as_view(), name='generic_products'),
+    path('generic-product-detail/<int:id>/', GenericProductDetails.as_view(), name='generic_product_details'),
 ]
