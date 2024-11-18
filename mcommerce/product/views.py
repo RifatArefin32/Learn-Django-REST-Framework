@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-
+from rest_framework import generics
 
 # function based views
 # list all the products (function based view)
@@ -111,3 +111,8 @@ class ClassProductDetails(APIView):
             }
             return Response(response_data, status=status.HTTP_404_NOT_FOUND)
         
+        
+# Generics class
+class GenericsProducts(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
