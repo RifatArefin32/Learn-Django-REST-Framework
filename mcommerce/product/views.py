@@ -113,6 +113,7 @@ class ClassProductDetails(APIView):
         
         
 # Generics class
-class GenericsProducts(generics.ListAPIView):
+class GenericProducts(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
