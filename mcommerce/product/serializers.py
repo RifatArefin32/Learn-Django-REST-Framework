@@ -16,4 +16,4 @@ class ProductSerializer(serializers.ModelSerializer):
 class MessageSerializer(serializers.Serializer):
     email = serializers.EmailField()
     content = serializers.CharField(max_length=200)
-    created_at = serializers.DateTimeField(default=timezone.now) 
+    created_at = serializers.DateTimeField() 

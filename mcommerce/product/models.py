@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 class Product(models.Model):
@@ -9,4 +10,10 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
-    
+
+
+class Message():
+    def __init__(self, email, content, created=None):
+        self.email = email
+        self.content = content
+        self.created_at = created or datetime.now()
