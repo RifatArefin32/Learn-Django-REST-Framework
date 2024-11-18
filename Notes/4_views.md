@@ -10,5 +10,15 @@
 - For using API, `class ClassName(APIView)` is used. We need to inherit `APIView` class
 
 ## Generic views
+- Generic Views are a set of pre-built views that provide common functionality for handling HTTP requests. 
+- These views allow developers to quickly implement common operations like CRUD objects without needing to write the logic from scratch.
+- Common Generic Views in DRF:
+    - ListAPIView
+    - CreateAPIView
+    - RetrieveAPIView
+    - UpdateAPIView
+    - DestroyAPIView
+    - ListCreateAPIView
+    - RetrieveUpdateDestroyAPIView
 
 ## ViewSets
