@@ -2,7 +2,15 @@ from django.db import models
 from datetime import datetime
 
 # Create your models here.
+
+# product category model
+class ProductCategory(models.Model):
+    cat_name = models.CharField(max_length=30)
+
+
+# product model
 class Product(models.Model):
+    category = models.ForeignKey('ProductCategory', related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     cost = models.DecimalField(decimal_places=2, max_digits=6)
     expire_date = models.DateField(null=True, blank=True)
