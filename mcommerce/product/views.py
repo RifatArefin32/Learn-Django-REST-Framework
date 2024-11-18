@@ -18,9 +18,25 @@ def list_products(request):
     }
     return Response(context)
 
+
+# list all message and create a message
+@permission_classes([IsAuthenticated])
 @api_view(['GET', 'POST'])
 def list_messages(request):
-    message_obj = Message('rifat@mcommerce.com', 'Test message')
-    serializer_class = MessageSerializer(message_obj, many=False)
-    
-    return Response(serializer_class.data)
+    if request.method == 'GET':
+        # List all messages
+        messages = Message.all()
+        serializer = MessageSerializer(messages, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        # Create a new message
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            message = Message(
+                email=serializer.validated_data['email'],
+                content=serializer.validated_data['content']
+            )
+            message.save()  # Save the message
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
