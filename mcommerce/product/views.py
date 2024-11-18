@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 
 # Create your views here.
 
-# list all the products
+# list all the products (function based view)
 @api_view(['GET', 'POST'])
 def list_products(request):
     products = Product.objects.all()

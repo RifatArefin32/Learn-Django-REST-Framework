@@ -7,3 +7,4 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = '__all__'
         # fields = ['name', 'price']
+        # Note: `model` and `fields` are predefined keywords for model serializer
