@@ -1,25 +1,8 @@
-# Use Faker to Add Fake Data
-It is the best approach for development: Use Django Management Command + Faker
-
-## Install Faker
-```bash
-pip install Faker
-```
-
-## Create a custom management command
-Inside one of our apps (e.g., core), create the following structure
-- core/
-  - management/
-    - commands/
-      - dummy_core_data.py
-
-## Code `dummy_core_data.py`
-```py
+import random
 from django.core.management.base import BaseCommand
 from faker import Faker
-import random
 from apps.accounts.models import CustomUser
-from apps.products.models import Product, Order, OrderItem
+from apps.core.models import Product, Order, OrderItem
 
 fake = Faker()
 
@@ -62,7 +45,3 @@ class Command(BaseCommand):
                         quantity=random.randint(1, 5)
                     )
         self.stdout.write(self.style.SUCCESS("✅ Created orders with order items."))
-```
-
-## Run the command from the root directory
-python manage.py dummy_core_data
