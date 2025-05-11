@@ -11,17 +11,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Create dummy users
-        users = []
-        for _ in range(5):
-            user = CustomUser.objects.create_user(
-                username=fake.user_name(),
-                email=fake.email(),
-                password='password123'
-            )
-            users.append(user)
-        self.stdout.write(self.style.SUCCESS("✅ Created 5 users."))
+        # 5 users have already been created [./accounts/management/commands/dummy_users.py]
 
-        # Create dummy products
+        # Create 10 dummy products
         products = []
         for _ in range(10):
             product = Product.objects.create(
@@ -31,17 +23,18 @@ class Command(BaseCommand):
                 stock=random.randint(1, 50)
             )
             products.append(product)
-        self.stdout.write(self.style.SUCCESS("✅ Created 10 products."))
+        self.stdout.write(self.style.SUCCESS("Created 10 products."))
 
         # Create dummy orders with order items
-        for user in users:
-            for _ in range(random.randint(1, 3)):
-                order = Order.objects.create(user=user)
-                selected_products = random.sample(products, k=random.randint(1, 4))
-                for product in selected_products:
-                    OrderItem.objects.create(
-                        order=order,
-                        product=product,
-                        quantity=random.randint(1, 5)
-                    )
-        self.stdout.write(self.style.SUCCESS("✅ Created orders with order items."))
+        user = CustomUser.objects.get(id=1)
+        
+        for _ in range(random.randint(1, 3)):
+            order = Order.objects.create(user=user)
+            selected_products = random.sample(products, k=random.randint(1, 4))
+            for product in selected_products:
+                OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=random.randint(1, 5)
+                )
+        self.stdout.write(self.style.SUCCESS("Created orders with order items."))
