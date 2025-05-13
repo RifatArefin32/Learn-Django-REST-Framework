@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from apps.accounts.models import CustomUser
 from .models import Product, Order, OrderItem
 
 # product serializer
@@ -28,10 +29,16 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ['product', 'quantity']
 
+# user info serializer
+class UserInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'phone_number', 'gender']
 
 # order serializer (nested serializer)
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
+    user = UserInfoSerializer(read_only=True)
     class Meta:
         model = Order
         fields = ['order_id', 'user', 'created_at', 'status', 'items']
