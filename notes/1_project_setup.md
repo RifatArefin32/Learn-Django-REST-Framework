@@ -19,7 +19,7 @@ python3 -m venv env
 source env/bin/activate
 ```
 
-Install Django and Django REST Framework
+Install Django and Django REST Framework and add `rest_framework` in the `INSTALLED_APPS` array in `learn_drf/settings.py` file.
 ```bash
 pip install django djangorestframework
 ```
