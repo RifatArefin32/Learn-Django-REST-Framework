@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Product, Order
+from .serializers import ProductSerializer, OrderSerializer
 
 # list of all projects
 @api_view(['GET'])
@@ -18,4 +18,11 @@ def product_list(request):
 def product_details(request, id):
     product = get_object_or_404(Product, pk=id)
     serializer = ProductSerializer(product)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+# list of all orders
+@api_view(['GET'])
+def order_list(request):
+    orders = Order.objects.all()
+    serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
