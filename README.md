@@ -13,6 +13,11 @@ python manage.py dummy_user
 python manage.py dummy_core
 ```
 
+# Clone the Project
+- Clone the project
+- Create virtual environment `env` and activate it
+- Create database and configure it to the project settings
+  
 
 # References
 - [Django REST Framework series - BugByte](https://www.youtube.com/watch?v=6AEvlNgRPNc&list=PL-2EBeDYMIbTLulc9FSoAXhbmXpLq2l5t&index=2)
