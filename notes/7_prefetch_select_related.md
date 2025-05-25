@@ -106,7 +106,7 @@ Query all students:
 ```sql
 SELECT * FROM student;
 ```
-For each student, Django will run:
+For each student, Django will run
 ```sql
 SELECT course.*
 FROM course
@@ -124,7 +124,7 @@ for student in students:
     print(student.name, [course.title for course in student.courses.all()])
 ```
 
-### What Django does (only 2 queries):
+### What Django does (only 2 queries)
 Query all students:
 
 ```sql
@@ -135,7 +135,7 @@ Query all courses related to those students:
 SELECT course.*, course_students.student_id
 FROM course
 INNER JOIN course_students
-  ON course.id = course_students.course_id
+ON course.id = course_students.course_id
 WHERE course_students.student_id IN (1, 2, 3, ...);
 ```
 Django then builds an in-memory mapping of student → courses and avoids querying inside the loop.
