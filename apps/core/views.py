@@ -34,6 +34,9 @@ def product_details(request, id):
 # list of all orders
 @api_view(['GET'])
 def order_list(request):
-    orders = Order.objects.all()
+    orders = Order.objects.prefetch_related(
+        'items',
+        'items__product'
+    ).all()
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
