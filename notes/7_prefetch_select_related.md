@@ -1,6 +1,4 @@
 # `select_related` and `prefetch_related` in Django
-
-# Django ORM Optimization
 When we access related objects (like `foreign keys`), Django may run extra queries, which can slow down our app. To solve this, Django gives us:
 - select_related() — for `ForeignKey` and `OneToOneField`
 - prefetch_related() — for `ManyToManyField` and `reverse ForeignKey`
@@ -10,7 +8,7 @@ When we access related objects (like `foreign keys`), Django may run extra queri
 - Accessing a related object from a `ForeignKey`
 - We want fewer database hits
 
-## Example
+## Model
 Suppose we have models `Author` and `Book`.
 ```py
 class Author(models.Model):
@@ -20,14 +18,14 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 ```
-### Without `select_related()`
+## Without `select_related()`
 ```py
 books = Book.objects.all()
 for book in books:
     print(book.title, book.author.name)  # One query for books, one per author = N+1 queries
 ```
 
-### With `select_related()`
+## With `select_related()`
 ```py
 books = Book.objects.select_related('author')
 for book in books:
