@@ -1,5 +1,5 @@
 # `select_related` and `prefetch_related` in Django
-When we access related objects (like `foreign keys`), Django may run extra queries, which can slow down our app. To solve this, Django gives us:
+When we access related objects (like `foreign keys`), Django may run extra queries, which can slow down our app. To solve this, Django gives us
 - select_related() — for `ForeignKey` and `OneToOneField`
 - prefetch_related() — for `ManyToManyField` and `reverse ForeignKey`
 
@@ -50,18 +50,18 @@ for author in authors:
     print(author.name, [book.title for book in author.books.all()])  # N+1 queries
 ```
 ### What Django does
-First query to get all authors:
+First query to get all authors
 ```sql
 SELECT * FROM author;
 ```
-Then for each author, a separate query to get their books:
+Then for each author, a separate query to get their books
 ```sql
 SELECT * FROM book WHERE author_id = 1;
 SELECT * FROM book WHERE author_id = 2;
 SELECT * FROM book WHERE author_id = 3;
 ```
 ### Result
-Total queries: 1 (authors) + N (books) = N+1 queries. This is called the N+1 query problem.
+Total queries = 1 (authors) + N (books) = N+1 queries. This is called the `N+1` query problem.
 
 ## With `prefetch_related`
 ```py
@@ -77,7 +77,7 @@ SELECT * FROM book WHERE author_id IN (1, 2, 3, ...);
 ```
 
 ### Note
-Here, Django already preloaded all books with a single extra query. So even though `author.books.all()` is still called, Django uses the cached, pre-fetched data in memory, not the database. So, total queries: only 2
+Here, Django already preloaded all books with a single extra query. So even though `author.books.all()` is still called, Django uses the cached, pre-fetched data in memory, not the database. So, total queries is only 2
 - 1 for all authors
 - 1 for all related books
 
@@ -102,7 +102,7 @@ for student in students:
 ```
 
 ### What Django does (N+1 queries)
-Query all students:
+Query all students
 ```sql
 SELECT * FROM student;
 ```
@@ -111,7 +111,7 @@ For each student, Django will run
 SELECT course.*
 FROM course
 JOIN course_students
-  ON course.id = course_students.course_id
+ON course.id = course_students.course_id
 WHERE course_students.student_id = <student_id>;
 ```
 For 10 students, that’s 1 (student) + 10 (courses) = 11 queries.
@@ -125,12 +125,11 @@ for student in students:
 ```
 
 ### What Django does (only 2 queries)
-Query all students:
-
+Query all students
 ```sql
 SELECT * FROM student;
 ```
-Query all courses related to those students:
+Query all courses related to those students
 ```sql
 SELECT course.*, course_students.student_id
 FROM course
