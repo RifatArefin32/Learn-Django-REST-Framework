@@ -33,6 +33,7 @@ Create a django project at the root directory
 ```bash
 django-admin startproject learn_drf .
 ```
+Add `'rest_framework'` to the `INSTALLED_APPS` array at the `settings.py` of the project. 
 
 ## PostgreSQL Configuration
 Install `psycopg2` for PostgreSQL which is the PostgreSQL adapter for Python. Django uses it to connect to PostgreSQL.
