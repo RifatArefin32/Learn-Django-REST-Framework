@@ -5,7 +5,7 @@
 - [Create App and Custom User](./notes/2_create_custom_user.md)
 - [Django Model and Relationship](./notes/3_django_models.md)
 - [Create Fake Data for Django Models](./notes/4_faker_dummy_data.md)
-
+- [Install silk profiling and prefetch model](./notes/6_silk_profiling.md)
 # Data Population
 Run the following command sequentially to populate database
 ```bash
