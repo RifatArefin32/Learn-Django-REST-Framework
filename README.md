@@ -6,12 +6,16 @@
 - [Django Model and Relationship](./notes/3_django_models.md)
 - [Create Fake Data for Django Models](./notes/4_faker_dummy_data.md)
 - [Install silk profiling and prefetch model](./notes/6_silk_profiling.md)
+- [select_related and prefetch_related](./notes/7_prefetch_select_related.md)
+
+
 # Data Population
 Run the following command sequentially to populate database
 ```bash
 python manage.py dummy_user
 python manage.py dummy_core
 ```
+
 
 # Clone the Project
 - Clone the project
