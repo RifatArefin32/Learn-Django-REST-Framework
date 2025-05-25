@@ -22,3 +22,4 @@ python manage.py dummy_core
 # References
 - [Django REST Framework series - BugByte](https://www.youtube.com/watch?v=6AEvlNgRPNc&list=PL-2EBeDYMIbTLulc9FSoAXhbmXpLq2l5t&index=2)
 - [Official Documentation of DRF](https://www.django-rest-framework.org/)
+- [Django Queryset](https://docs.djangoproject.com/en/5.2/ref/models/querysets/)
